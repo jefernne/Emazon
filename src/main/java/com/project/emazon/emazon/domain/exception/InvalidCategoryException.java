@@ -4,6 +4,7 @@ package com.project.emazon.emazon.domain.exception;
 import java.util.List;
 
 public class InvalidCategoryException extends RuntimeException {
+
   private List<ValidationError> errors;
 
 

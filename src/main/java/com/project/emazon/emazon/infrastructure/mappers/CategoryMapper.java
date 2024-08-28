@@ -6,31 +6,32 @@ import com.project.emazon.emazon.infrastructure.entities.CategoryEntity;
 
 public class CategoryMapper {
 
-    public static CategoryDTO ToCategoryDTO(Category category) {
+    public static CategoryDTO toCategoryDTO(Category category) {
         CategoryDTO categoryDTO = new CategoryDTO();
-        categoryDTO.setId_category(category.getId_Category());
+        categoryDTO.setIdcategory(category.getIdCategory());
         categoryDTO.setName(category.getName());
         categoryDTO.setDescription(category.getDescription());
-        return categoryDTO;};
+        return categoryDTO;
+    }
 
     public static Category toCategory(CategoryDTO  categoryDTO) {
         Category category = new Category();
-        category.setId_Category(categoryDTO.getId_category());
+        category.setIdCategory(categoryDTO.getIdcategory());
         category.setName(categoryDTO.getName());
         category.setDescription(categoryDTO.getDescription());
         return category;
-    };
-    public static Category  toCategory(CategoryEntity CategoryEntity ) {
+    }
+    public static Category  toCategory(CategoryEntity categoryEntity ) {
         Category category = new Category();
-        category.setId_Category(CategoryEntity.getId_Category());
-        category.setName(CategoryEntity.getName());
-        category.setDescription(CategoryEntity.getDescription());
+        category.setIdCategory(categoryEntity.getIdCategory());
+        category.setName(categoryEntity.getName());
+        category.setDescription(categoryEntity.getDescription());
         return category;
     }
 
     public static CategoryEntity  toCategoryEntity(Category category) {
         CategoryEntity categoryEntity = new CategoryEntity();
-        categoryEntity.setId_Category(category.getId_Category());
+        categoryEntity.setIdCategory(category.getIdCategory());
         categoryEntity.setName(category.getName());
         categoryEntity.setDescription(category.getDescription());
         return categoryEntity;

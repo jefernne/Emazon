@@ -1,6 +1,6 @@
 package com.project.emazon.emazon.domain.useCase;
 
-import com.project.emazon.emazon.application.services.CategoryService;
+
 import com.project.emazon.emazon.domain.exception.InvalidCategoryException;
 import com.project.emazon.emazon.domain.model.Category;
 import com.project.emazon.emazon.domain.port.persistence.CategoryRepositoryPort;

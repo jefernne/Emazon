@@ -7,12 +7,12 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
-import java.util.Optional;
+
 
 import static org.mockito.Mockito.*;
 import static org.junit.jupiter.api.Assertions.*;
 
-import static org.mockito.Mockito.*;
+
 public class CategoryRepositoryAdapterTest {
     private CategoryRepositoryAdapter adapter;
 

@@ -1,16 +1,17 @@
 package com.project.emazon.emazon.domain.model;
 
 public class Category {
-    private Long Id_Category;
+    private Long idCategory;
     private String name;
     private String description;
 
-    public Long getId_Category() {
-        return Id_Category;
+
+    public Long getIdCategory() {
+        return idCategory;
     }
 
-    public void setId_Category(Long id_Category) {
-        Id_Category = id_Category;
+    public void setIdCategory(Long idCategory) {
+        this.idCategory = idCategory;
     }
 
     public String getName() {

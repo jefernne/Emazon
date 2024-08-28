@@ -1,5 +1,6 @@
 package com.project.emazon.emazon.domain.usecase;
 
+import com.project.emazon.emazon.domain.exception.ErrorMessages;
 import com.project.emazon.emazon.domain.exception.InvalidCategoryException;
 import com.project.emazon.emazon.domain.exception.ValidationError;
 import com.project.emazon.emazon.domain.model.Category;
@@ -18,7 +19,7 @@ public class CreateCategoryUseCase  implements CategoryServicesUseCase {
     }
     @Override
     public Category createCategory(Category category) {
-        List<ValidationError> errors=   ValidateCategory(category);
+        List<ValidationError> errors=   validateCategory(category);
         if(!errors.isEmpty()){
             throw new InvalidCategoryException("Validation failed",errors);
         }
@@ -26,21 +27,21 @@ public class CreateCategoryUseCase  implements CategoryServicesUseCase {
     }
 
 
-    public List<ValidationError> ValidateCategory(Category category) {
-     List<ValidationError> errors= new ArrayList<ValidationError>();
+    public List<ValidationError> validateCategory(Category category) {
+     List<ValidationError> errors= new ArrayList<>();
      if(category.getName() == null || category.getName().isEmpty()) {
-       errors.add(new ValidationError("name", "The category name cannot be empty."));
+       errors.add(new ValidationError("name", ErrorMessages.CATEGORY_NAME_EMPTY));
      } else if (category.getName().length()>50) {
-         errors.add(new ValidationError("name", "The category name cannot be longer than 50 characters."));
+         errors.add(new ValidationError("name", ErrorMessages.CATEGORY_NAME_TOO_LONG));
      }
-     categoryRepository.findByNombre(category.getName()).ifPresent(existingCategory ->{
-         errors.add(new ValidationError("name", "The category already exists."));
-     } );
+     categoryRepository.findByNombre(category.getName()).ifPresent(existingCategory ->
+         errors.add(new ValidationError("name", ErrorMessages.CATEGORY_ALREADY_EXISTS))
+     );
 
      if (category.getDescription() == null || category.getDescription().isEmpty()) {
-         errors.add(new ValidationError("description", "The category description cannot be empty."));
+         errors.add(new ValidationError("description", ErrorMessages.CATEGORY_DESCRIPTION_EMPTY));
      } else if (category.getDescription().length()>90) {
-         errors.add(new ValidationError("description", "The category description cannot be longer than 90 characters."));
+         errors.add(new ValidationError("description", ErrorMessages.CATEGORY_DESCRIPTION_TOO_LONG));
 
      }
         return errors;

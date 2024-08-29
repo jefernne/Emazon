@@ -42,4 +42,5 @@ public class CategoryRepositoryAdapterTest {
         verify(jpaCategoryRepository, times(1)).save(any(CategoryEntity.class));
     }
 
+
 }

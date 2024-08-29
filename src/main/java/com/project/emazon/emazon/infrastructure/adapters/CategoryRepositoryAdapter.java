@@ -6,8 +6,13 @@ import com.project.emazon.emazon.infrastructure.entities.CategoryEntity;
 import com.project.emazon.emazon.infrastructure.mappers.CategoryMapper;
 import com.project.emazon.emazon.infrastructure.repositories.JpaCategoryRepository;
 import org.springframework.stereotype.Component;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.PageRequest;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
+
 @Component
 public class CategoryRepositoryAdapter implements CategoryRepositoryPort {
     private final JpaCategoryRepository jpaCategoryRepository;
@@ -26,5 +31,14 @@ public class CategoryRepositoryAdapter implements CategoryRepositoryPort {
     @Override
     public Optional<Category> findByNombre(String name) {
         return jpaCategoryRepository.findByName(name).map(CategoryMapper::toCategory);
+    }
+
+    @Override
+    public List<Category> findAllSortedAndPaginated(int page, int size, String sortBy, boolean ascending) {
+        Sort sort = ascending ? Sort.by(sortBy).ascending() : Sort.by(sortBy).descending();
+        PageRequest pageRequest = PageRequest.of(page, size, sort);
+        return jpaCategoryRepository.findAll(pageRequest).stream()
+                .map(CategoryMapper::toCategory)
+                .collect(Collectors.toList());
     }
 }

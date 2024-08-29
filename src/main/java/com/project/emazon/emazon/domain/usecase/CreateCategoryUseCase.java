@@ -6,7 +6,7 @@ import com.project.emazon.emazon.domain.exception.ValidationError;
 import com.project.emazon.emazon.domain.model.Category;
 import com.project.emazon.emazon.domain.port.persistence.CategoryRepositoryPort;
 import com.project.emazon.emazon.domain.port.service.CategoryServicesUseCase;
-import com.project.emazon.emazon.infrastructure.errors.FieldError;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,6 +14,7 @@ import java.util.List;
 public class CreateCategoryUseCase  implements CategoryServicesUseCase {
 
     private final CategoryRepositoryPort categoryRepository;
+
     public CreateCategoryUseCase(CategoryRepositoryPort categoryRepository) {
         this.categoryRepository = categoryRepository;
     }
@@ -24,6 +25,11 @@ public class CreateCategoryUseCase  implements CategoryServicesUseCase {
             throw new InvalidCategoryException("Validation failed",errors);
         }
         return categoryRepository.save(category);
+    }
+
+    @Override
+    public List<Category> getCategories(int page, int size, String sortBy, boolean ascending) {
+        return categoryRepository.findAllSortedAndPaginated(page, size, sortBy, ascending);
     }
 
 

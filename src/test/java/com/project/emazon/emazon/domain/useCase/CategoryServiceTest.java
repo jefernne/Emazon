@@ -5,11 +5,14 @@ import com.project.emazon.emazon.domain.exception.InvalidCategoryException;
 import com.project.emazon.emazon.domain.model.Category;
 import com.project.emazon.emazon.domain.port.persistence.CategoryRepositoryPort;
 import com.project.emazon.emazon.domain.usecase.CreateCategoryUseCase;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
 
 import static org.mockito.Mockito.*;
@@ -67,6 +70,21 @@ public class CategoryServiceTest {
 
         verify(categoryRepositoryPort, never()).save(any(Category.class));
     }
+
+    @Test
+    void testExecute() {
+        Category category1 = new Category();
+        Category category2 = new Category();
+        category1.setName("Electronics");
+        category1.setDescription("Description 1");
+        category2.setName("Books");
+        category2.setDescription("Description 2");
+
+        when(categoryRepositoryPort.findAllSortedAndPaginated(0, 2, "name", true)).thenReturn(Arrays.asList(category1,category2));
+
+        List<Category> result = createCategoryUseCase.getCategories(0,2,"name",true); assertEquals(2, result.size());
+        assertEquals("Electronics", result.get(0).getName());    }
+
 }
 
 

@@ -41,4 +41,13 @@ public class CategoryServiceTest {
         verify(createCategoryUseCase, times(1)).createCategory(category);
     }
 
+    @Test
+    void testFindAllSortedAndPaginated() {
+        Category category1 = new Category();
+        Category category2 = new Category();
+        category1.setName("Books");
+        category1.setDescription("Category for books");
+        category2.setName("Books");
+        category2.setDescription("Category for books");
+    }
 }

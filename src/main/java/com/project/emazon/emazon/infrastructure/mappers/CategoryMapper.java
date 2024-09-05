@@ -36,4 +36,7 @@ public class CategoryMapper {
         categoryEntity.setDescription(category.getDescription());
         return categoryEntity;
     }
+
+
+
 }

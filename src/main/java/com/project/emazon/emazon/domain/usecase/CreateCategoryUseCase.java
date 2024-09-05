@@ -36,18 +36,18 @@ public class CreateCategoryUseCase  implements CategoryServicesUseCase {
     public List<ValidationError> validateCategory(Category category) {
      List<ValidationError> errors= new ArrayList<>();
      if(category.getName() == null || category.getName().isEmpty()) {
-       errors.add(new ValidationError("name", ErrorMessages.CATEGORY_NAME_EMPTY));
+       errors.add(new ValidationError("name category", ErrorMessages.CATEGORY_NAME_EMPTY));
      } else if (category.getName().length()>50) {
          errors.add(new ValidationError("name", ErrorMessages.CATEGORY_NAME_TOO_LONG));
      }
      categoryRepository.findByNombre(category.getName()).ifPresent(existingCategory ->
-         errors.add(new ValidationError("name", ErrorMessages.CATEGORY_ALREADY_EXISTS))
+         errors.add(new ValidationError("category", ErrorMessages.CATEGORY_ALREADY_EXISTS))
      );
 
      if (category.getDescription() == null || category.getDescription().isEmpty()) {
-         errors.add(new ValidationError("description", ErrorMessages.CATEGORY_DESCRIPTION_EMPTY));
+         errors.add(new ValidationError("description category", ErrorMessages.CATEGORY_DESCRIPTION_EMPTY));
      } else if (category.getDescription().length()>90) {
-         errors.add(new ValidationError("description", ErrorMessages.CATEGORY_DESCRIPTION_TOO_LONG));
+         errors.add(new ValidationError("description category", ErrorMessages.CATEGORY_DESCRIPTION_TOO_LONG));
 
      }
         return errors;

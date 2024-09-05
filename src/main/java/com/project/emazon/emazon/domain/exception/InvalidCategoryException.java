@@ -7,8 +7,6 @@ public class InvalidCategoryException extends RuntimeException {
 
   private List<ValidationError> errors;
 
-
-
     public InvalidCategoryException(String message, List<ValidationError> errors) {
         super(message);
         this.errors = errors;

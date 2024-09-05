@@ -9,6 +9,7 @@ import java.util.List;
 public class CategoryService implements CategoryServicesUseCase{
     private final CreateCategoryUseCase createCategoryUseCase;
 
+
     public CategoryService(CreateCategoryUseCase createCategoryUseCase) {
         this.createCategoryUseCase = createCategoryUseCase;
     }

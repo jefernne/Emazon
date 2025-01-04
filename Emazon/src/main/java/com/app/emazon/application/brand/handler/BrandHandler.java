@@ -7,6 +7,7 @@ import com.app.emazon.domain.brand.error.ErrorMessajeBrand;
 import com.app.emazon.domain.brand.error.InvalidBrandeExection;
 import com.app.emazon.domain.brand.error.MessageErrorBrand;
 import com.app.emazon.domain.brand.model.Brand;
+import com.app.emazon.domain.brand.model.PaginateResultBrand;
 import com.app.emazon.domain.brand.port.service.IBrandServices;
 
 import java.util.ArrayList;
@@ -30,5 +31,12 @@ public class BrandHandler implements IBrandHandler{
         }
         iBrandServices.Save(brand);
 
+    }
+
+    @Override
+    public PaginateResultBrand<BrandDto> getAllBrands(int page, int pageSize, String sortBy, boolean ascending) {
+        PaginateResultBrand<Brand> result = iBrandServices.findAllSortedAndPaginated(page, pageSize, sortBy, ascending);
+        List<BrandDto> BrandDtos = result.getList().stream().map(iMapperBrand::BrandToBrandDto).toList();
+        return new PaginateResultBrand<>(BrandDtos,result.getPageNumber(),result.getPageSize(),result.getTotalElements(), result.getTotalPages(),result.isFirst(),result.isLast());
     }
 }

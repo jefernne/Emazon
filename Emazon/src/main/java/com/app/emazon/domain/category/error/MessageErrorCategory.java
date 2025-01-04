@@ -1,10 +1,10 @@
 package com.app.emazon.domain.category.error;
 
-public class MessageError {
+public class MessageErrorCategory {
     private String field;
     private String Message;
 
-    public MessageError(String field, String message) {
+    public MessageErrorCategory(String field, String message) {
         this.field = field;
         Message = message;
     }

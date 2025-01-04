@@ -1,6 +1,6 @@
 package com.app.emazon.domain.category.error;
 
-public class ErrorMessaje {
+public class ErrorMessajeCategory {
     public static final String CATEGORY_NAME_EMPTY = "Category name cannot be empty";
     public static final String CATEGORY_NAME_TOO_LONG="The category name cannot be more than 50 characters.";
     public static final String CATEGORY_DESCRIPTION_EMPTY= "Category description cannot be empty";

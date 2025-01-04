@@ -2,8 +2,8 @@ package com.app.emazon.application.category.handler;
 
 import com.app.emazon.application.category.dto.CategoryDto;
 import com.app.emazon.application.category.mapper.ImpMapperCategory;
-import com.app.emazon.domain.category.error.ErrorMessaje;
-import com.app.emazon.domain.category.error.MessageError;
+import com.app.emazon.domain.category.error.ErrorMessajeCategory;
+import com.app.emazon.domain.category.error.MessageErrorCategory;
 import com.app.emazon.domain.category.model.Category;
 import com.app.emazon.domain.category.model.PaginatedResult;
 import com.app.emazon.domain.category.port.service.IcategoryServicePort;
@@ -26,7 +26,7 @@ public class CategoryHandler implements IcategoryHadler{
         if(category!=null){
             icategoryServicePort.Save(category);
         }else{
-            MessageError error = new MessageError("empty", ErrorMessaje.CATEGORY_NON_EXISTENT);
+            MessageErrorCategory error = new MessageErrorCategory("empty", ErrorMessajeCategory.CATEGORY_NON_EXISTENT);
         }
 
 

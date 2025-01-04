@@ -4,9 +4,9 @@ import com.app.emazon.domain.brand.error.ErrorMessajeBrand;
 import com.app.emazon.domain.brand.error.InvalidBrandeExection;
 import com.app.emazon.domain.brand.error.MessageErrorBrand;
 import com.app.emazon.domain.brand.model.Brand;
+import com.app.emazon.domain.brand.model.PaginateResultBrand;
 import com.app.emazon.domain.brand.port.persistence.IBrandPersistence;
 import com.app.emazon.domain.brand.port.service.IBrandServices;
-import com.app.emazon.domain.category.error.ErrorMessaje;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,6 +28,11 @@ public class BrandUseCase implements IBrandServices {
         brandPersistence.save(brand);
 
 
+    }
+
+    @Override
+    public PaginateResultBrand<Brand> findAllSortedAndPaginated(int page, int pageSize, String sortField, boolean ascending) {
+        return brandPersistence.findAllSortedAndPaginated(page,pageSize,sortField,ascending);
     }
 
 
